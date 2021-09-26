@@ -44,13 +44,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function is_admin()
-    {
-        return $this->is_admin;
-    }
+    // public function is_admin()
+    // {
+    //     return $this->is_admin;
+    // }
 
     public function properties()
     {
         return $this->hasMany(Property::class);
+    }
+
+    public function requestProperty()
+    {
+        return $this->hasMany(RequestProperty::class);
     }
 }

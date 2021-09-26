@@ -41,9 +41,6 @@
             </div>
             
         </div>
-        <div class="">
-                        <button type="submit" class="btn btn-primary py-3 px-5">Request by <span class="ion-ios-mobile"></span></button>
-                    </div>
     </div>
 </section>
 

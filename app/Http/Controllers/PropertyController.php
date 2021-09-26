@@ -56,7 +56,7 @@ class PropertyController extends Controller
             'kitchen' => $request->kitchen,
         ]);
         $imgFile->move(public_path('\properties\images'), $fileName);
-        return redirect(route('agent.dashboard'));
+        return redirect(route('listing'));
     }
 
     public function edit(Property $property)
@@ -104,7 +104,7 @@ class PropertyController extends Controller
             'kitchen' => $request->kitchen,
         ]);
         
-        return redirect(route('agent.dashboard'));
+        return redirect(route('listing'));
     }
 
     public function destroy(Property $property)

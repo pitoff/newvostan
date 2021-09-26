@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function(){
 
-        
+        Route::delete('agent/{agent}', [AgentController::class, 'destroy'])->name('remove.agent');  
 
     });
 

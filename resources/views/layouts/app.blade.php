@@ -39,7 +39,8 @@
           @auth
             @if(auth()->user()->is_admin)
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="" class="nav-link">Listing</a></li>
+                <li class="nav-item"><a href="{{route('listing')}}" class="nav-link">Listing</a></li>
+                <li class="nav-item"><a href="{{route('agent.listing', auth()->user()->firstname)}}" class="nav-link">My Listing</a></li>
                 <li class="nav-item"><a href="{{route('agents')}}" class="nav-link">Agents</a></li>
                 <form action="{{route('logout')}}" method="post">
                   @csrf

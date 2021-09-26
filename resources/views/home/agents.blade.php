@@ -58,7 +58,19 @@
                         <h3><a href="{{route('agent.listing', $user->firstname)}}">{{$user->lastname}} {{$user->firstname}}</a></h3>
                         <p><em>{{$user->email}}</em></p>
                         <p><em>{{$user->phonenumber}}</em></p>
-                        <p class="h-info"><span class="ion-ios-filing icon"></span> <span class="details">{{$user->properties->count()}} {{Str::plural('property', $user->properties->count())}}</span></p>
+                        <p class="h-info"><span class="ion-ios-filing icon"></span> <span class="details">{{$user->properties->count()}} {{Str::plural('property', $user->properties->count())}}</span>
+                        
+                        @if(auth()->user()->is_admin)
+                        <form method="post" action="{{route('remove.agent', $user)}}">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="button btn btn-primary icon-2 d-flex align-items-center justify-content-center mx-2" data-toggle="tooltip" data-placement="top" title="Remove Agent">
+                                <span class="ion-ios-trash" style="font-size: 18px;"><i class="sr-only">Remove Agent</i></span>
+                            </button>
+
+                        </form>
+                        @endif
                     </div>
                 </div>
             </div>

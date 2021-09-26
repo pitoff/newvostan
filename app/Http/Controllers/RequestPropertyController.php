@@ -9,7 +9,6 @@ class RequestPropertyController extends Controller
 {
     public function index(Property $property)
     {
-
         return view('request.index', [
             'property' => $property
         ]);
