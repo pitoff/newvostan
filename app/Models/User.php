@@ -54,8 +54,8 @@ class User extends Authenticatable
         return $this->hasMany(Property::class);
     }
 
-    public function requestProperty()
-    {
-        return $this->hasMany(RequestProperty::class);
-    }
+    // public function requestProperty()
+    // {
+    //     return $this->hasMany(RequestProperty::class);
+    // }
 }

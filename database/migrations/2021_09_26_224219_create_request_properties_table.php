@@ -15,6 +15,10 @@ class CreateRequestPropertiesTable extends Migration
     {
         Schema::create('request_properties', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('property_id')->constrained()->onDelete('cascade');
+            $table->string('email')->unique();
+            $table->string('phonenumber')->unique();
+            $table->string('body');
             $table->timestamps();
         });
     }

@@ -17,4 +17,9 @@ class Property extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function requestProperty()
+    {
+        return $this->hasMany(RequestProperty::class);
+    }
 }

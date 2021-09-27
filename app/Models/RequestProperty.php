@@ -9,8 +9,17 @@ class RequestProperty extends Model
 {
     use HasFactory;
 
-    public function user()
+    protected $fillable =[
+        'email', 'phonenumber', 'body'
+    ];
+
+    public function property()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Property::class);
     }
+
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 }

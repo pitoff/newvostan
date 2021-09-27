@@ -30,7 +30,9 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/services', [HomeController::class, 'services'])->name('services');
 Route::get('/agent', [HomeController::class, 'agent'])->name('agents');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
+
 Route::get('/request/{property:title}', [RequestPropertyController::class, 'index'])->name('property.request');
+Route::post('/request/{property}', [RequestPropertyController::class, 'store'])->name('request.save');
 
 Route::get('/register', [AgentController::class, 'register'])->name('agent.register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');

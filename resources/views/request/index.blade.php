@@ -8,8 +8,8 @@
 
         <div class="row block-9 justify-content-center mb-5">
             <div class="col-md-6 align-items-stretch d-flex">
-
-                <form action="" method="POST" enctype="multipart/form-data" class="bg-light p-5 contact-form">
+                
+                <form action="{{route('request.save', $property)}}" method="POST" class="bg-light p-5 contact-form">
                     @csrf
 
                     <div class="form-group">
@@ -25,8 +25,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <textarea name="text_message" id="" cols="30" rows="5" class="form-control" placeholder="Text message"></textarea>
-                        @error('text_message')
+                        <textarea name="body" id="" cols="30" rows="5" class="form-control" placeholder="Text message"></textarea>
+                        @error('body')
                             <em class="text-danger">{{$message}}</em>
                         @enderror
                     </div>
