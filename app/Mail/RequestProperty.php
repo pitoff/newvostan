@@ -16,9 +16,18 @@ class RequestProperty extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $propertyTitle;
+    public $body;
+    public $property;
+    public $email;
+
+    public function __construct($propertyTitle, $id, $email, $body)
     {
-        //
+        $this->propertyTitle = $propertyTitle;
+        $this->body = $body;
+        $this->property = $id;
+        $this->email = $email;
     }
 
     /**
@@ -28,6 +37,7 @@ class RequestProperty extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.requestProperty');
+        return $this->markdown('emails.requestProperty')
+                    ->subject('Property Request');
     }
 }

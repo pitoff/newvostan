@@ -25,7 +25,7 @@ class HomeController extends Controller
 
     public function agent(User $user)
     {
-        $user = User::latest()->where('is_admin', false)->get();
+        $user = User::latest()->where('is_admin', 0)->get();
         return view('home.agents', [
             'users' => $user
         ]);

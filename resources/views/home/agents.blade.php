@@ -60,6 +60,7 @@
                         <p><em>{{$user->phonenumber}}</em></p>
                         <p class="h-info"><span class="ion-ios-filing icon"></span> <span class="details">{{$user->properties->count()}} {{Str::plural('property', $user->properties->count())}}</span>
                         
+                        @auth
                         @if(auth()->user()->is_admin)
                         <form method="post" action="{{route('remove.agent', $user)}}">
                             @csrf
@@ -71,6 +72,7 @@
 
                         </form>
                         @endif
+                        @endauth
                     </div>
                 </div>
             </div>

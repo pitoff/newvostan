@@ -43,7 +43,7 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('property/{property}', [HomeController::class, 'singleListing'])->name('show');
 Route::get('/agent/property/{user:firstname}', [UserPropertyController::class, 'mylisting'])->name('agent.listing');
 
-Route::get('/agent/dashboard', [PropertyController::class, 'index'])->name('listing');
+Route::get('/listing', [PropertyController::class, 'index'])->name('listing');
 
 Route::group(['middleware' => 'auth'], function(){
 
