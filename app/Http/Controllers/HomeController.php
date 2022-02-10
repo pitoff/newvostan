@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Property $property)
     {
-        return view('home.index');
+        $properties = $property->orderByDesc('created_at')->with('user')->limit(3)->get();
+        return view('home.index', [
+            'properties' => $properties
+        ]);
     }
 
     public function about()

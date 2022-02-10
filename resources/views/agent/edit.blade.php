@@ -10,9 +10,9 @@
             <div class="col-md-6 align-items-stretch d-flex">
 
                 <form action="{{route('edit', $property)}}" method="POST" enctype="multipart/form-data" class="bg-light p-5 contact-form">
-                    @csrf
+                    @csrf @method('PUT')
                     <div class="property-details">
-                        <div class="img rounded" style="background-image: url(/properties/images/{{$property->image}}); height:300px;">
+                        <div class="img rounded" style="background-image: url('/properties/images/{{$property->image}}'); height:300px;">
                         </div>
                     </div>
 

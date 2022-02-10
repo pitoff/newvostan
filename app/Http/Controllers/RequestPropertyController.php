@@ -34,6 +34,6 @@ class RequestPropertyController extends Controller
 
         Mail::to($property->user->email)->send(new MailRequestProperty($property->title, $property->id, $request->email, $request->body));
 
-        return back()->with('success', 'You have successfully requested a property');
+        return back()->with('success', 'You have successfully requested a property, Agent will contact you');
     }
 }

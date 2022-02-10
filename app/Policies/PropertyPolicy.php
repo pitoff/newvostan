@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Property;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class PropertyPolicy
 {
@@ -29,7 +30,9 @@ class PropertyPolicy
 
     public function update(User $user, Property $property)
     {
-        return $user->id === $property->user_id;
+        return $user->id === $property->user_id
+        ? Response::allow()
+        : Response::deny('You are not the owner of this property');
     }
 
     public function delete(User $user, Property $property)

@@ -19,7 +19,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="property-details">
-                    <div class="img rounded" style="background-image: url(/properties/images/{{$property->image}});"></div>
+                    <div class="img rounded" style="background-image: url('/properties/images/{{$property->image}}');"></div>
                     <div class="text">
                         <h2>{{$property->title}}</h2>
                         <span class="subheading">{{$property->state}}</span>

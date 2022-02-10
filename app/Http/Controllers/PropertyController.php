@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Property;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PropertyController extends Controller
 {
@@ -39,9 +40,16 @@ class PropertyController extends Controller
         ]);
 
         $imgFile = $request->file('image');
-        $fileName = time(). '.' .$imgFile->getClientOriginalName();
 
-        $request->user()->properties()->create([
+        if($imgFile){
+            $fileName = Controller::ImageStr(8). '.' .$request->image->extension();
+        }
+
+        if(!File::exists('properties')){
+            File::makeDirectory('properties\images', 0755, true, true);
+        }
+
+        $createProperty = $request->user()->properties()->create([
             'image' => $fileName,
             'title' => $request->title,
             'p_type' => $request->type,
@@ -55,8 +63,15 @@ class PropertyController extends Controller
             'toilet' => $request->toilet,
             'kitchen' => $request->kitchen,
         ]);
-        $imgFile->move(public_path('\properties\images'), $fileName);
-        return redirect(route('listing'));
+
+        if($createProperty){
+            $imagePath = 'properties/images/';
+            $imgFile->move($imagePath, $fileName);
+
+            return redirect(route('listing'));
+
+        }
+
     }
 
     public function edit(Property $property)
@@ -69,12 +84,12 @@ class PropertyController extends Controller
     public function update(Property $property, Request $request)
     {
         request()->validate([
-            'image' => 'required|file|image|mimes:jpg,jpeg,png',
+            'image' => 'file|image|mimes:jpg,jpeg,png',
             'title' => 'required',
-            'type' => 'required',
-            'for' => 'required',
-            'state' => 'required',
-            'lga' => 'required',
+            'type' => '',
+            'for' => '',
+            'state' => '',
+            'lga' => '',
             'address' => 'required',
             'description' => 'required',
             'price' => 'required',
@@ -84,18 +99,20 @@ class PropertyController extends Controller
         ]);
 
         $imgFile = $request->file('image');
+
         if($imgFile){
-            $fileName = time(). '.' .$imgFile->getClientOriginalName();
-            $imgFile->move(public_path('\properties\images'), $fileName);
+            $fileName = Controller::ImageStr(8). '.' .$request->image->extension();
         }
-        
-        $property->update([
-            'image' => $fileName,
+
+        $this->authorize('update', $property);
+
+        $updateProperty = $property->update([
+            'image' => $fileName ?? $property->image,
             'title' => $request->title,
-            'p_type' => $request->type,
-            'p_for' => $request->for,
-            'state' => $request->state,
-            'lga' => $request->lga,
+            'p_type' => $request->type ?? $property->p_type,
+            'p_for' => $request->for ?? $property->p_for,
+            'state' => $request->state ?? $property->state,
+            'lga' => $request->lga ?? $property->lga,
             'address' => $request->address,
             'description' => $request->description,
             'price' => $request->price,
@@ -103,14 +120,26 @@ class PropertyController extends Controller
             'toilet' => $request->toilet,
             'kitchen' => $request->kitchen,
         ]);
+
+        if($updateProperty){
+            $imagePath = 'properties/images/';
+            $imgFile->move($imagePath, $fileName);
+
+            return redirect(route('listing'));
+
+        }
         
-        return redirect(route('listing'));
     }
 
     public function destroy(Property $property)
     {
         $this->authorize('delete', $property);
         $property->delete();
+
+        if(File::exists(public_path('properties/images/'.$property->image))){
+            File::delete(public_path('properties/images/'.$property->image));
+        }
+
         return back();
     }
 

@@ -36,7 +36,7 @@
             <div class="col-md-4">
                 <div class="property-wrap ftco-animate">
                     <a href="{{route('show', $property)}}">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(/properties/images/{{$property->image}});">
+                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url('/properties/images/{{$property->image}}');">
                         <a href="{{route('show', $property)}}" class="icon d-flex align-items-center justify-content-center btn-custom">
                             <span class="ion-ios-eye"></span>
                         </a>

@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('property', [PropertyController::class, 'create'])->name('agent.create');
         Route::post('property', [PropertyController::class, 'store']);
         Route::get('property/{property}/edit', [PropertyController::class, 'edit'])->name('edit');
-        Route::post('property/{property}/edit', [PropertyController::class, 'update']);
+        Route::put('property/{property}/edit', [PropertyController::class, 'update']);
         Route::delete('property/{property}', [PropertyController::class, 'destroy'])->name('destroy');
 
     });
