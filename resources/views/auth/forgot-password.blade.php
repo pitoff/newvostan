@@ -2,17 +2,16 @@
 @section('pageContent')
 
 <section class="ftco-section contact-section">
-      <h2 class="mb-2 justify-content-center" style="text-align: center;">Login</h2>
+      <h2 class="mb-2 justify-content-center" style="text-align: center;">Change Password</h2>
       <div class="container">
+        
+        <em>{{session('PasswordResetLink')}}</em>
+        <em>{{session('LinkExpired')}}</em>
 
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-6 align-items-stretch d-flex">
-            
-            <em class="text-success">{{session('success')}}</em>
-            <em class="text-danger">{{session('loginFailed')}}</em>
-            <em class="text-danger">{{session('PasswordResetSuccess')}}</em>
-
-            <form action="{{route('login')}}" method="POST" class="bg-light p-5 contact-form">
+    
+            <form action="{{route('forgot-password')}}" method="POST" class="bg-light p-5 contact-form">
               @csrf
               <div class="form-group">
                 <input type="email" name="email" class="form-control" placeholder="Email">
@@ -20,15 +19,11 @@
                     <em class="text-danger">{{$message}}</em>
                 @enderror
               </div>
+              
               <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="Password">
-                @error('password')
-                    <em class="text-danger">{{$message}}</em>
-                @enderror
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary py-3 px-5 mx-3">
-                <a href="{{route('forgot-password')}}">Forgot Password?</a>
+
+                <input type="submit" value="Update Password" class="btn btn-primary py-3 px-5">
+                
               </div>
 
             </form>

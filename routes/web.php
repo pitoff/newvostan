@@ -37,6 +37,10 @@ Route::post('/request/{property}', [RequestPropertyController::class, 'store'])-
 Route::get('/register', [AgentController::class, 'register'])->name('agent.register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 Route::get('/login', [AgentController::class, 'login'])->name('agent.login');
+Route::get('/forgot-password', [AgentController::class, 'forgotPassword'])->name('forgot-password');
+Route::post('/forgot-password', [AgentController::class, 'sendPasswordResetLink']);
+Route::get('/update-pass/{token}/user/{email}', [AgentController::class, 'updatePass'])->name('update-password');
+Route::put('/update-pass/{token}/user/{email}', [AgentController::class, 'storeUpdatePass']);
 Route::post('/login', [LoginController::class, 'store'])->name('login');
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 

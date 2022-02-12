@@ -9,9 +9,14 @@ use Illuminate\Support\Facades\File;
 
 class PropertyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $properties = Property::latest()->paginate(8);
+        $properties = Property::latest()->paginate(3);
         return view('agent.index', [
             'properties' => $properties
         ]);
