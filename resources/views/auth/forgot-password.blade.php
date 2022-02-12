@@ -8,6 +8,7 @@
         <em>{{session('PasswordResetLink')}}</em>
         <em>{{session('LinkExpired')}}</em>
         <em>{{session('UserNotExist')}}</em>
+        <em>{{session('LinkSent')}}</em>
 
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-6 align-items-stretch d-flex">

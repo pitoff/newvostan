@@ -52,7 +52,7 @@ class AgentController extends Controller
         ]);
 
         Mail::to($getUser->email)->send(new ChangePassword($token, $getUser->email));
-        return back();
+        return back()->with('LinkSent', 'Password reset link has been sent to your email');
         
     }
 

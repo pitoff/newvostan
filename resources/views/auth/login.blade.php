@@ -7,10 +7,10 @@
 
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-6 align-items-stretch d-flex">
-            
+
             <em class="text-success">{{session('success')}}</em>
             <em class="text-danger">{{session('loginFailed')}}</em>
-            <em class="text-danger">{{session('PasswordResetSuccess')}}</em>
+            <em class="text-success">{{session('PasswordResetSuccess')}}</em>
 
             <form action="{{route('login')}}" method="POST" class="bg-light p-5 contact-form">
               @csrf
