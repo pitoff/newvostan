@@ -36,13 +36,13 @@ class AgentController extends Controller
         $request->validate([
             'email' => 'required'
         ]);
-        
+
         $token = Controller::ImageStr(12);
         $getUser = User::where('email', $request->email)->first();
         $time = date('H:i:s');
         $expiration_time = date('H:i:s', strtotime('+5 minutes', strtotime($time)));
 
-        if(!$getUser){
+        if (!$getUser) {
             return back()->with('UserNotExist', 'User does not exist in our db');
         }
 
@@ -53,7 +53,6 @@ class AgentController extends Controller
 
         Mail::to($getUser->email)->send(new ChangePassword($token, $getUser->email));
         return back()->with('LinkSent', 'Password reset link has been sent to your email');
-        
     }
 
     public function updatePass(Request $request)
@@ -74,15 +73,20 @@ class AgentController extends Controller
         $tokenExpireTime = $getUser->expiration;
         $currentTime = date('H:i:s');
 
-        if(!($currentTime > $tokenExpireTime)){
+        if ($getUser->reset_token !== $request->token) {
+
+            return back()->with('tokenDoesNotMatch', 'token does not match');
+        }
+
+        if (!($currentTime > $tokenExpireTime)) {
             $updatePass = User::where('email', $request->email)->update([
                 'password' => Hash::make($request->password)
             ]);
-            if($updatePass){
+            if ($updatePass) {
                 return redirect(route('agent.login'))->with('PasswordResetSuccess', 'Password has been reset');
             }
         }
-        
+
         return redirect(route('forgot-password'))->with('LinkExpired', 'Password reset link has expired, get a new one');
     }
 
@@ -91,5 +95,4 @@ class AgentController extends Controller
         $agent->delete();
         return back();
     }
-
 }
