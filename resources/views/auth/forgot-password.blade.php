@@ -9,7 +9,6 @@
         <em>{{session('LinkExpired')}}</em>
         <em>{{session('UserNotExist')}}</em>
         <em>{{session('LinkSent')}}</em>
-        <em>{{session('tokenDoesNotMatch')}}</em>
 
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-6 align-items-stretch d-flex">

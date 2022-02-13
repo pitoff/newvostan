@@ -6,6 +6,8 @@
       <div class="container">
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-6 align-items-stretch d-flex">
+            
+          <em>{{session('tokenDoesNotMatch')}}</em>
     
             <form action="{{route('update-password', [$token, $email])}}" method="POST" class="bg-light p-5 contact-form">
               @csrf @method('PUT')
